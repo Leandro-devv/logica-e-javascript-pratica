@@ -1,11 +1,9 @@
-let velocidadeCorte = Number(prompt("Digite a velocidade de corte:  "));
 
-let diametroPeca = Number(prompt("Digite o diâmetro da peça:  "));
-
-let rpm = (velocidadeCorte * 1000) / (3.14 * diametroPeca);
-
-if(rpm > 2500){
-    alert(`cuidado! o valor do RPM: ${rpm.toFixed(2)} está muito alto!`);
-}else{
-    alert(`O valor do RPM:${rpm.toFixed(2)} está dentro do limite seguro.`);
+function calcularRpm() {
+    let velocidadeCorte = document.getElementById("velocidade").value;
+    let diametro = document.getElementById("diametro").value;
+    let resultado = document.getElementById("resultado");
+    let rpm = (1000 * velocidadeCorte) / (3.14 * diametro);
+    resultado.innerHTML = "O valor do RPM é: " + rpm.toFixed(2);
+    return rpm.toFixed(2);
 }
