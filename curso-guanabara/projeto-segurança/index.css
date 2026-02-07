@@ -11,7 +11,7 @@ body{
 
 #container{
     background-color: #4d4949de;
-    padding: 50px;
+    padding: 30px;
     width: 500px;
     height: 600px;
     border: solid 5px #f1e8e8  ;
@@ -21,14 +21,14 @@ body{
     align-items: center;
 }
 
-#container #nome{
+ #container-nome{
     width: 100%;
-    margin-top: 5px;
     padding: 10px;
+    margin: 5px 0;
     border: none;
     border-radius: 5px;
 }
- #container #setor{
+ #container-setor{
     width: 100%;
     padding: 10px;
     margin: 5px 0;
@@ -36,7 +36,20 @@ body{
     border-radius: 5px;
 }
 
+
+#nome, #setor {
+    margin-top: 7px;
+    width: 100%;           
+    padding: 15px;         
+    font-size: 18px;       
+    border: 1px solid #ccc;
+    border-radius: 8px;   
+    box-sizing: border-box; 
+    outline: none;    
+}
+
 #container #enviar{
+    width: 100%;
     margin-top: 15px;
     padding: 10px 20px;
     background-color: #8c8686;
@@ -49,4 +62,15 @@ body{
 #container #enviar:hover{
     background-color: #a39e9e;
 }
+
+#res{
+    margin-top: 15px;
+}
+
+#res imagem{
+    width: 50px;
+    height: 50px;
+}
+
+
 
