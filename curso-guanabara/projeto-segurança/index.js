@@ -4,10 +4,6 @@ function identificador(){
     let setor = document.getElementById("setor").value;
     let res = document.getElementById('res');
 
-    let data =  new Date();
-    let hora = data.getHours();
-    let minuto = data.getMinutes();
-
     res.innerHTML = '';
 
     if(nome == '' || setor == ''){
@@ -28,21 +24,34 @@ function identificador(){
         let containerEpi = document.createElement('div')
         containerEpi.setAttribute('id', 'containerEpi')
 
-        texto.innerHTML = `olá ${nome}, voce faz parte do setor: ${setor}`;
+        texto.innerHTML = `Olá ${nome}, voce faz parte do setor: ${setor}`;
         res.appendChild(texto);
 
        
         if(setor == 'administrativo'){
             recomendacao.innerHTML = `Atenção, você tem a opção de usar os EPIs somente ao entrar na fábrica!`;
+            corpo.style.backgroundImage = "linear-gradient(rgba(77, 73, 73, 0.50), rgba(77, 73, 73, 0.85)), url('imagens/background/bodyAdm.jpg')";
             imagem_1.setAttribute('src','imagens/icones/bota.jpg');
             imagem_2.setAttribute('src','imagens/icones/auricular.jfif');
             imagem_3.setAttribute('src','imagens/icones/oculos.png');       
-        }else if(setor == 'operacional' ){
-
-        }else if(setor == 'Manutenção' ){
-
-        }else if(setor == 'Segurança'){
-
+        }else if(setor == 'solda' ){
+            recomendacao.innerHTML = `Atenção, estes EPIS são de uso obrigatório`;
+            corpo.style.backgroundImage = "linear-gradient(rgba(77, 73, 73, 0.50), rgba(77, 73, 73, 0.85)), url('imagens/background/bodySolda.jpg')";
+            imagem_1.setAttribute('src','imagens/icones/bota.jpg');
+            imagem_2.setAttribute('src','imagens/icones/macacao.jpg');
+            imagem_3.setAttribute('src','imagens/icones/mascara.jfif');
+        }else if(setor == 'manutencao' ){
+            recomendacao.innerHTML = `Atenção, estes EPIS são de uso obrigatório`;
+            corpo.style.backgroundImage = "linear-gradient(rgba(77, 73, 73, 0.50), rgba(77, 73, 73, 0.85)), url('imagens/background/bodyManutencao.jfif')";
+            imagem_1.setAttribute('src','imagens/icones/bota.jpg');
+            imagem_2.setAttribute('src','imagens/icones/auricular.jfif');
+            imagem_3.setAttribute('src','imagens/icones/oculos.png');
+        }else if(setor == 'operacional'){
+            recomendacao.innerHTML = `Atenção, estes EPIS são de uso obrigatório`;
+            corpo.style.backgroundImage = "linear-gradient(rgba(77, 73, 73, 0.50), rgba(77, 73, 73, 0.85)), url('imagens/background/bodyOperacional.jpeg')";
+            imagem_1.setAttribute('src','imagens/icones/bota.jpg');
+            imagem_2.setAttribute('src','imagens/icones/auricular.jfif');
+            imagem_3.setAttribute('src','imagens/icones/oculos.png');
         }
 
         containerEpi.appendChild(imagem_1);

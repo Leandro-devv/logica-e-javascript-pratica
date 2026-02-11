@@ -1,4 +1,10 @@
 body{
+    background-image: linear-gradient(rgba(191, 184, 184, 0.50), rgba(191, 184, 184, 0.50)), 
+                      url('imagens/background/body.jpeg'); 
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background-color: #bfb8b8;
     display: flex;
     flex-direction: column;
