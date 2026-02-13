@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Passos</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <h1>Calculadora de Passos</h1>
+    </header>
+    <section id="container">
+        <div id="info">
+            <label for="inicio">Inicio:</label>
+            <input type="number" name="inicio" id="inicio" >
+            <label for="fim">Fim:</label>
+            <input type="number" name="fim" id="fim">
+        </div>
+        <div id="divpasso">
+            <label for="passo">Passo:</label>
+            <input type="number" name="passo" id="passo">
+        </div>
+        <div id="calcular">
+            <button type="button" onclick="calcular()" >Calcular</button>
+        </div>
+        <div id="res">
+
+        </div>
+        <div id="btmLimpar">
+            <button id="botaoLimpar" type="button" onclick="limpar()">Limpar</button>
+        </div>
+    </section>
+    <footer>
+        <h3>&copy;Leandro Oliveira</h3>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>
