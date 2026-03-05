@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockMaster</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="main-container">
+        <h1>StockMaster</h1>
+        <section class="container-cadastro-consulta">
+            <!----------------------------Menu Navegação----------------------------->
+            <header>
+                <nav class="nav-list">
+                    <span id="btn-cadastro" class="active">Cadastro</span>
+                    <span id="btn-consulta">Consulta</span>
+                </nav>
+            </header>
+            <!----------------------------Formulario Cadastro----------------------------->
+            <article class="container-form-cadastro" id="aba-cadastro">
+                <form action="">
+                    <fieldset>
+                        <legend>Entrada de Material</legend>
+
+                        <label for="tipoItem">Qual item deseja cadastrar?</label>
+                        <select id="tipoItem">
+                            <option value="">Selecione...</option>
+                            <option value="broca">Broca</option>
+                            <option value="fresa">Fresa</option>
+                            <option value="material">Matéria-prima</option>
+                        </select>
+
+                        <div id="campos-broca" data-grupo class="hidden">
+                            <label for="tipoBroca">Tipo da Broca</label>
+                            <select id="tipoBroca">
+                                <option value="acoRapido">Aço Rápido</option>
+                                <option value="metalDuro">Metal Duro</option>
+                            </select>
+                        </div>
+
+                        <div id="campos-fresa" data-grupo class="hidden">
+                            <label for="tipoFresa">Tipo da Fresa</label>
+                            <select id="tipoFresa">
+                                <option value="topo">Topo Reto</option>
+                                <option value="esferica">Esférica</option>
+                            </select>
+                        </div>
+                        <div id="campos-material" data-grupo class="campos-material hidden">
+                            <label for="tipoMateriaPrima">Tipo da materiaprima</label>
+                            <select id="tipoMateriaPrima">
+                                <option value="acoCarbona">Aço Carbono</option>
+                                <option value="acoInox">Aço Inox</option>
+                                <option value="aluminio">Aluminio</option>
+                            </select>
+                            <label for="diametroBarras">Diametro</label>
+                            <input type="number" name="diametroBarras" id="diametroBarras">
+                            <label for="MetrosBarras">Metros</label>
+                            <input type="number" name="MetrosBarras" id="MetrosBarras">
+                        </div>
+
+                        <label for="quantidade">Quantidade</label>
+                        <input type="number" name="quantidade" id="quantidade">
+
+                        <button type="submit">Salvar no Inventário</button>
+                    </fieldset>
+                </form>
+            </article>
+            <!----------------------------Formulario Consulta----------------------------->
+            <article class="container-consulta hidden" id="aba-consulta">
+                <form action="">
+                    <fieldset>
+                        <legend>Consultar</legend>
+                        <label for="consultaItem">Item</label>
+                        <select name="consultaItem" id="consultaItem">
+                            <option value="">Selecione...</option>
+                            <option value="broca">Broca</option>
+                            <option value="fresa">Fresa</option>
+                            <option value="material">Matéria-prima</option>
+                        </select>
+                        <div id="consultaQuantidadeBroca" class="consultaQuantidadeBroca hidden">
+                            <label for="consultaTipoQuantidadeBroca">Tipo da Fresa</label>
+                            <select id="consultaTipoQuantidadeBroca">
+                                <option value="acoRapido">Aço Rapido</option>
+                                <option value="metalDuro">Metal Duro</option>
+                            </select>
+                        </div>
+                        <div id="consultaQuantidadeFresa" class="consultaQuantidadeFresa hidden">
+                            <label for="consultaQuantidadetipoFresa">Tipo da Fresa</label>
+                            <select id="consultaQuantidadetipoFresa">
+                                <option value="topo">Topo Reto</option>
+                                <option value="esferica">Esférica</option>
+                            </select>
+                        </div>
+                        <div id="consultaQuantidadeMateriaPrima" class="consultaQuantidadeMateriaPrima hidden">
+                            <label for="consultaTipoQuantidadeMateriaPrima">Tipo Materia Prima</label>
+                            <select id="consultaTipoQuantidadeMateriaPrima">
+                                <option value="acoCarbona">Aço Carbono</option>
+                                <option value="acoInox">Aço Inox</option>
+                                <option value="aluminio">Aluminio</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </form>
+            </article>
+        </section>
+    </main>
+    <script src="index.js"></script>
+</body>
+
+</html>
