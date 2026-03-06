@@ -21,7 +21,7 @@
             </header>
             <!----------------------------Formulario Cadastro----------------------------->
             <article class="container-form-cadastro" id="aba-cadastro">
-                <form action="">
+                <form action="" id="form-cadastro">
                     <fieldset>
                         <legend>Entrada de Material</legend>
 
@@ -33,7 +33,7 @@
                             <option value="material">Matéria-prima</option>
                         </select>
 
-                        <div id="campos-broca" data-grupo class="hidden">
+                        <div id="cadastro-broca" data-grupo="cadastro" class="hidden">
                             <label for="tipoBroca">Tipo da Broca</label>
                             <select id="tipoBroca">
                                 <option value="acoRapido">Aço Rápido</option>
@@ -41,30 +41,30 @@
                             </select>
                         </div>
 
-                        <div id="campos-fresa" data-grupo class="hidden">
+                        <div id="cadastro-fresa" data-grupo="cadastro" class="hidden">
                             <label for="tipoFresa">Tipo da Fresa</label>
                             <select id="tipoFresa">
                                 <option value="topo">Topo Reto</option>
                                 <option value="esferica">Esférica</option>
                             </select>
                         </div>
-                        <div id="campos-material" data-grupo class="campos-material hidden">
-                            <label for="tipoMateriaPrima">Tipo da materiaprima</label>
-                            <select id="tipoMateriaPrima">
-                                <option value="acoCarbona">Aço Carbono</option>
+                        <div id="cadastro-material" data-grupo="cadastro" class="campos-material hidden">
+                            <label for="tipoMaterial">Tipo da materiaprima</label>
+                            <select id="tipoMaterial">
+                                <option value="acoCarbono">Aço Carbono</option>
                                 <option value="acoInox">Aço Inox</option>
                                 <option value="aluminio">Aluminio</option>
                             </select>
                             <label for="diametroBarras">Diametro</label>
                             <input type="number" name="diametroBarras" id="diametroBarras">
-                            <label for="MetrosBarras">Metros</label>
-                            <input type="number" name="MetrosBarras" id="MetrosBarras">
+                            <label for="metrosBarras">Metros</label>
+                            <input type="number" name="metrosBarras" id="metrosBarras">
                         </div>
 
                         <label for="quantidade">Quantidade</label>
                         <input type="number" name="quantidade" id="quantidade">
 
-                        <button type="submit">Salvar no Inventário</button>
+                        <button type="submit" id="btn-salvarInventario">Salvar no Inventário</button>
                     </fieldset>
                 </form>
             </article>
@@ -80,21 +80,21 @@
                             <option value="fresa">Fresa</option>
                             <option value="material">Matéria-prima</option>
                         </select>
-                        <div id="consultaQuantidadeBroca" class="consultaQuantidadeBroca hidden">
+                        <div id="consulta-broca" data-grupo="consulta" class="hidden">
                             <label for="consultaTipoQuantidadeBroca">Tipo da Fresa</label>
                             <select id="consultaTipoQuantidadeBroca">
                                 <option value="acoRapido">Aço Rapido</option>
                                 <option value="metalDuro">Metal Duro</option>
                             </select>
                         </div>
-                        <div id="consultaQuantidadeFresa" class="consultaQuantidadeFresa hidden">
+                        <div id="consulta-fresa" data-grupo="consulta" class=" hidden">
                             <label for="consultaQuantidadetipoFresa">Tipo da Fresa</label>
                             <select id="consultaQuantidadetipoFresa">
                                 <option value="topo">Topo Reto</option>
                                 <option value="esferica">Esférica</option>
                             </select>
                         </div>
-                        <div id="consultaQuantidadeMateriaPrima" class="consultaQuantidadeMateriaPrima hidden">
+                        <div id="consulta-material" data-grupo="consulta" class="hidden">
                             <label for="consultaTipoQuantidadeMateriaPrima">Tipo Materia Prima</label>
                             <select id="consultaTipoQuantidadeMateriaPrima">
                                 <option value="acoCarbona">Aço Carbono</option>
