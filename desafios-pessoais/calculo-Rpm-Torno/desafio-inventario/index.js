@@ -107,6 +107,10 @@ formulario.addEventListener('submit',(event) => {
         mostraCamposConsulta();
 
         console.log("Sucesso! Veja seu inventário:", inventario);
+
+        const todosOsGrupos = document.querySelectorAll('[data-grupo="cadastro"]');
+
+        todosOsGrupos.forEach(g => g.classList.add('hidden'));
     }else {
         alert("Selecione o que deseja cadastrar!");
     }
