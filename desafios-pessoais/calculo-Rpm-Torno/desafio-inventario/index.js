@@ -1,29 +1,33 @@
+/* ==========================================================================
+   CONFIGURAÇÃO INICIAL E CARREGAMENTO DE DADOS
+========================================================================== */
+const formulario = document.getElementById('form-cadastro');
+const dadosSalvos = localStorage.getItem('estoque_master');
+const inventario = dadosSalvos ? JSON.parse(dadosSalvos) : [];
+/* ==========================================================================
+   NAVEGAÇÃO ENTRE ABAS (CADASTRO VS CONSULTA)
+========================================================================== */
 const cadastro = document.getElementById('btn-cadastro');
 const consulta = document.getElementById('btn-consulta');
 
 cadastro.addEventListener('click', () => {
-    const menuInativo = document.getElementById('aba-consulta');
-    menuInativo.classList.add('hidden')
-
-    const menuAtivo = document.getElementById('aba-cadastro');
-    menuAtivo.classList.remove('hidden')
-
-    consulta.classList.remove('active')
-    cadastro.classList.add('active')
+    document.getElementById('aba-consulta').classList.add('hidden');
+    document.getElementById('aba-cadastro').classList.remove('hidden');
+    consulta.classList.remove('active');
+    cadastro.classList.add('active');
 });
 
 consulta.addEventListener('click', () => {
-    const menuInativo = document.getElementById('aba-cadastro');
-    menuInativo.classList.add('hidden')
-
-    const menuAtivo = document.getElementById('aba-consulta');
-    menuAtivo.classList.remove('hidden')
-
-    cadastro.classList.remove('active')
-    consulta.classList.add('active')
-    
+    document.getElementById('aba-cadastro').classList.add('hidden');
+    document.getElementById('aba-consulta').classList.remove('hidden');
+    cadastro.classList.remove('active');
+    consulta.classList.add('active');
 });
+/* ==========================================================================
+   LÓGICA DE EXIBIÇÃO DINÂMICA DE CAMPOS
+========================================================================== */
 
+// Mostra campos específicos (Broca, Fresa, etc) na tela de CADASTRO
 const mostrarCamposCadastro = () => {
     const valorSelecionado = document.getElementById('tipoItem').value;
     const todosOsGrupos = document.querySelectorAll('[data-grupo="cadastro"]');
@@ -33,60 +37,53 @@ const mostrarCamposCadastro = () => {
     if (valorSelecionado) {
         const idParaMostrar = 'cadastro-' + valorSelecionado;
         const elemento = document.getElementById(idParaMostrar);
-        
-        if (elemento) {
-            elemento.classList.remove('hidden');
-        }
+        if (elemento) elemento.classList.remove('hidden');
     }
 };
 document.getElementById('tipoItem').addEventListener('change', mostrarCamposCadastro);
 
-const mostraCamposConsulta = () =>{
+// Mostra campos específicos na tela de CONSULTA
+const mostraCamposConsulta = () => {
     const consultaItem = document.getElementById('consultaItem').value;
     const todosOsGrupos = document.querySelectorAll('[data-grupo="consulta"]');
 
     todosOsGrupos.forEach(g => g.classList.add('hidden'));
 
-
-    if(consultaItem){
+    if (consultaItem) {
         const consultaItemSelecionado = 'consulta-' + consultaItem;
         const elemento = document.getElementById(consultaItemSelecionado);
-
-        if (elemento){
-            elemento.classList.remove('hidden');
-        }
-
+        if (elemento) elemento.classList.remove('hidden');
     }
-    
 };
-document.getElementById('consultaItem').addEventListener('change',mostraCamposConsulta);
+document.getElementById('consultaItem').addEventListener('change', mostraCamposConsulta);
 
-const formulario = document.getElementById('form-cadastro');
-const inventario = [];
+/* ==========================================================================
+   PROCESSAMENTO DO FORMULÁRIO E PERSISTÊNCIA (SALVAR)
+========================================================================== */
 
-formulario.addEventListener('submit',(event) => {
-    event.preventDefault()
+formulario.addEventListener('submit', (event) => {
+    event.preventDefault(); 
     
     const ItemSelecionado = document.getElementById('tipoItem').value;
     const quantidade = Number(document.getElementById('quantidade').value);
 
     let novoItem = {};
     
-    if(ItemSelecionado === 'broca'){
+    if (ItemSelecionado === 'broca') {
         let tipoBroca = document.getElementById('tipoBroca').value;
         novoItem = {
             categoria : ItemSelecionado,
             tipo : tipoBroca,
-            quantidadeBrocas : quantidade
+            quantidade : quantidade
         };
-    }else if(ItemSelecionado === 'fresa'){
+    } else if (ItemSelecionado === 'fresa') {
         let tipoFresa = document.getElementById('tipoFresa').value;
-         novoItem = {
+        novoItem = {
             categoria : ItemSelecionado,
             tipo : tipoFresa,
-            quantidadeFrocas : quantidade
+            quantidade: quantidade
         };
-    }else if(ItemSelecionado === 'material'){
+    } else if (ItemSelecionado === 'material') {
         let tipomaterial = document.getElementById('tipoMaterial').value;
         let diametro = Number(document.getElementById('diametroBarras').value);
         let metros = Number(document.getElementById('metrosBarras').value);
@@ -99,20 +96,54 @@ formulario.addEventListener('submit',(event) => {
         };
     }
 
-    if(ItemSelecionado != ''){
-        inventario.push(novoItem)
+    // Validação e Salvamento
+    if (ItemSelecionado != '') {
+        // Adiciona ao Array na memória RAM
+        inventario.push(novoItem);
+        
+        // Salva o Array atualizado no LocalStorage (Transforma em String JSON)
+        localStorage.setItem('estoque_master', JSON.stringify(inventario));
 
+        // Limpeza da Interface
         formulario.reset();
-
-        mostraCamposConsulta();
+        const todosOsGrupos = document.querySelectorAll('[data-grupo="cadastro"]');
+        todosOsGrupos.forEach(g => g.classList.add('hidden'));
 
         console.log("Sucesso! Veja seu inventário:", inventario);
-
-        const todosOsGrupos = document.querySelectorAll('[data-grupo="cadastro"]');
-
-        todosOsGrupos.forEach(g => g.classList.add('hidden'));
-    }else {
+    } else {
         alert("Selecione o que deseja cadastrar!");
     }
-
 });
+/* ========================================================================== 
+    SISTEMA DE BUSCA E EXIBIÇÃO (CONSULTA) 
+========================================================================== */
+const btnConsulta = document.getElementById('btn-pesquisar');
+
+btnConsulta.addEventListener('click',()=>{
+    const containerConsulta = document.getElementById('aba-consulta');
+    const itemConsulta = document.getElementById('consultaItem').value;
+    const resultadoInventario = document.getElementById('container-resultados-lista');
+    
+    resultadoInventario.innerHTML = '';
+    
+    if(itemConsulta != ''){
+        const conteudoResposta = document.querySelector('.conteudo-resposta')
+        
+        const itensEncontrados = inventario.filter(item =>item.categoria === itemConsulta);
+
+        itensEncontrados.forEach(item=>{
+                resultadoInventario.innerHTML += `
+                <p><strong>Tipo:</strong> ${item.tipo}</p>
+                <p><strong>Quantidade:</strong> ${item.quantidade}</p>
+                ${item.medidas ? `<p><strong>Medidas:</strong> ${item.medidas}</p>` : ''}` 
+        })
+       
+        conteudoResposta.classList.remove('hidden');
+
+    }else {
+        alert("Selecione o que deseja consultar!")
+    }
+
+   
+});
+

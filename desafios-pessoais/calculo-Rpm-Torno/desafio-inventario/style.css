@@ -59,6 +59,28 @@ h1 {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
 }
 
+.conteudo-resposta{
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-resultado-inventario{
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 50px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--cor-destaque);
+    border-radius: 5px;
+    color: var(--cor-texto); 
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.2); 
+}
+
 /*============================= Navegação ==============================*/
 .nav-list {
     background-color: #16191d; 
@@ -93,7 +115,7 @@ h1 {
 fieldset {
     border: 1px solid var(--cor-borda);
     padding: 30px;
-    margin: 20px;
+    margin: 30px;
     width: 90%; 
     display: flex;
     flex-direction: column;
@@ -145,7 +167,24 @@ button {
 
 button:hover {
     background-color: var(--cor-destaque-hover);
-    transform: translateY(-2px); 
+    transform: translatey(-2px);
+}
+/*============================= Animações ==============================*/
+@keyframes pulsar {
+    0% {
+        transform: scale(1); /* Tamanho original */
+    }
+    50% {
+        transform: scale(1.01); /* Aumenta 5% */
+    }
+    100% {
+        transform: scale(1); /* Volta ao normal */
+    }
+}
+
+.conteudo-resposta:not(.hidden) {
+    animation: pulsar 2s ease-in-out infinite; 
+    /* 'infinite' faz ela ficar pulsando sem parar! */
 }
 
 /*============================= Mobile ==============================*/
