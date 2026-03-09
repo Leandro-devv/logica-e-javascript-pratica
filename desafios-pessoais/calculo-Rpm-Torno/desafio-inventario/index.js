@@ -91,7 +91,8 @@ formulario.addEventListener('submit', (event) => {
         novoItem = {
             categoria: ItemSelecionado,
             tipo: tipomaterial,
-            medidas: diametro + "mm x " + metros + "m",
+            diametro: diametro,
+            metros: metros,
             quantidade: quantidade
         };
     }
@@ -120,24 +121,35 @@ formulario.addEventListener('submit', (event) => {
 const btnConsulta = document.getElementById('btn-pesquisar');
 
 btnConsulta.addEventListener('click',()=>{
-    const containerConsulta = document.getElementById('aba-consulta');
     const itemConsulta = document.getElementById('consultaItem').value;
     const resultadoInventario = document.getElementById('container-resultados-lista');
+    let tipoItem;
     
     resultadoInventario.innerHTML = '';
     
     if(itemConsulta != ''){
         const conteudoResposta = document.querySelector('.conteudo-resposta')
         
-        const itensEncontrados = inventario.filter(item =>item.categoria === itemConsulta);
+        if(itemConsulta === 'broca'){
+            tipoItem = document.getElementById('consultaTipoQuantidadeBroca').value
+        }else if(itemConsulta === 'fresa'){
+            tipoItem = document.getElementById('consultaQuantidadetipoFresa').value
+        }else if(itemConsulta ==='material'){
+            tipoItem = document.getElementById('consultaTipoQuantidadeMateriaPrima').value
+        }
+        
+        let itemEncontrado = inventario.filter(item => item.categoria === itemConsulta && item.tipo === tipoItem)
 
-        itensEncontrados.forEach(item=>{
-                resultadoInventario.innerHTML += `
-                <p><strong>Tipo:</strong> ${item.tipo}</p>
-                <p><strong>Quantidade:</strong> ${item.quantidade}</p>
-                ${item.medidas ? `<p><strong>Medidas:</strong> ${item.medidas}</p>` : ''}` 
-        })
-       
+        const quantidadeItem = itemEncontrado.reduce((acumulador,itemAtual) => {
+            return acumulador + Number(itemAtual.quantidade);
+        },0);
+
+    
+        resultadoInventario.innerHTML += `
+        <p><strong>Item:</strong> ${itemConsulta}</p>
+        <p><strong>Tipo:</strong> ${tipoItem}</p>
+        <p><strong>Quantidade:</strong> ${quantidadeItem}</p>
+        ` 
         conteudoResposta.classList.remove('hidden');
 
     }else {
